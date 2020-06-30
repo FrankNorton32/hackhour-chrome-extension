@@ -110,7 +110,7 @@ window.onload = function (event) {
     $('.container').toggleClass('bg-dark');
     $('text-light').toggleClass('text-light');
     $('h2').toggleClass('text-dark');
-    $('label').toggleClass('text-dark');
+    $('form label').toggleClass('text-dark');
     $('body').toggleClass('border-dark');
   });
 
@@ -120,7 +120,7 @@ window.onload = function (event) {
     $('.container').toggleClass('bg-dark');
     $('text-light').toggleClass('text-light');
     $('h2').toggleClass('text-dark');
-    $('label').toggleClass('text-dark');
+    $('form label').toggleClass('text-dark');
     $('body').toggleClass('border-dark');
   });
 };
