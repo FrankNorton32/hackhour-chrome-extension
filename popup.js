@@ -2,11 +2,12 @@
 
 // add items to list
 
+
 // create storage array called "cartMaster"
-const cartMaster = [];
+let cartMaster = [];
 
 // create function to build new cart items
-function cartItems (item, url, price, id) {
+function cartItem (item, url, price, id) {
   this.item = item,
   this.url = url,
   this.price = price;
@@ -22,9 +23,17 @@ function removeItem (id) {
         cartMaster[i] = cartMaster [i + 1];
       }
       cartMaster.pop()
+      // chrome.storage.sync.set(cartMaster, function() {alert('saved!')});
       return;
     }
   }
+}
+
+// clear the whole cart
+function clearCart () {
+  cartMaster = [];
+  // chrome.storage.sync.set(cartMaster, function() {alert('saved!')});
+  alert("Cart cleared!")
 }
 
 // create a unique id for each list item.
@@ -39,9 +48,13 @@ function uniqueIDGenerator () {
   return output;
 }
 
+
 // ------------------Adding Comments---------------------------
 // eslint-disable-next-line func-names
 window.onload = function () {
+  chrome.storage.sync.get(cartMaster, function() {alert(cartMaster)})
+  cartMaster.forEach( el => alert(el))
+
   document.getElementById('submit').addEventListener('click', (e) => {
     const item = document.getElementById('item').value;
     // alert(`item: ${item}`)
@@ -53,18 +66,23 @@ window.onload = function () {
     // create new link element
     const listItem = document.createElement('A');
     listItem.innerHTML = `${item}: ${price}`;
-    alert(`item: ${listItem}`);
+    // alert(`item: ${listItem}`);
 
     listItem.classList.add('list-group-item', 'list-group-item-action');
 
     // append the item to list
     document.querySelector('.list-group').appendChild(listItem);
 
+    // create 
     const nextItem = new cartItem(item, itemUrl, price, uniqueIDGenerator());
-    // alert(`${nextItem}`)
+    // console.log(nextItem)
     cartMaster.push(nextItem);
-    // alert(`${cartMaster}`)
+    // console.log(cartMaster)
+    // chrome.storage.sync.set(cartMaster, function() {alert('saved!')})
   });
+
+  document.getElementById('clear').addEventListener('click', clearCart());
+
 };
 
 // ${item}: ${price}
