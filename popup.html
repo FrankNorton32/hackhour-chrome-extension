@@ -6,8 +6,10 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
     <script src="popup.js"></script>
   </head>
   <body style="width: 400px;">
@@ -16,37 +18,35 @@
       <h2 class="font-weight-bold text-light">bucket list</h2>
       <!------- LIST OF ITEMS --------->
       <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active"></a>
-        <a href="#" class="list-group-item list-group-item-action"></a>
-        <a href="#" class="list-group-item list-group-item-action"></a>
-        <a href="#" class="list-group-item list-group-item-action"></a>
-        <a href="#" class="list-group-item list-group-item-action disabled"></a>
+        <a href="#" target="_blank" class="list-group-item list-group-item-action"></a>
       </div>
       <!------- ADD ITEM FORM --------->
       <form>
-        <label for="Item">Item</label>
+        <label for="Item" class="text-light">Item</label>
         <input
           class="form-control form-control-sm"
           type="text"
           id="item"
-          placeholder=".form-control-sm"
+          placeholder="What is this item?"
         />
-        <label for="Price">Price</label>
+        <label for="Price" class="text-light">Price</label>
         <input
           class="form-control form-control-sm"
           type="text"
           id="price"
-          placeholder=".form-control-sm"
+          placeholder="How much?"
         />
-        <label for="itemUrl">URL</label>
+        <label for="itemUrl" class="text-light">URL</label>
         <input
           class="form-control form-control-sm"
           type="text"
           id="itemUrl"
-          placeholder=".form-control-sm"
+          placeholder="Link, please!"
         />
-        <button type="submit" id="submit" class="btn btn-primary mt-100">Submit</button>
-        <button type="clear" id="clear" class="btn btn-secondary">Empty Cart</button>
+        <div id="buttons">
+          <button type="submit" id="submit" class="btn btn-primary mt-100">Add Item</button>
+          <button type="clear" id="clear" class="btn btn-secondary">Empty Cart</button>
+        </div>
       </form>
     </div>
   </body>

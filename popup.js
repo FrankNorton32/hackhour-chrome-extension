@@ -33,7 +33,7 @@ function removeItem (id) {
 function clearCart () {
   cartMaster = [];
   // chrome.storage.sync.set(cartMaster, function() {alert('saved!')});
-  alert("Cart cleared!")
+  alert("clearCart: Cart cleared!")
 }
 
 // create a unique id for each list item.
@@ -51,37 +51,42 @@ function uniqueIDGenerator () {
 
 // ------------------Adding Comments---------------------------
 // eslint-disable-next-line func-names
-window.onload = function () {
+window.onload = function (event) {
+  event.stopPropagation();
   chrome.storage.sync.get(cartMaster, function() {alert(cartMaster)})
   cartMaster.forEach( el => alert(el))
 
-  document.getElementById('submit').addEventListener('click', (e) => {
+  document.getElementById('submit').addEventListener('click', (event) => {
+    alert("EVENT", event.target)
+    event.preventDefault();
     const item = document.getElementById('item').value;
     // alert(`item: ${item}`)
     const itemUrl = document.getElementById('itemUrl').value;
-    // alert(`item: ${itemUrl}`)
+    alert(`item: ${itemUrl}`)
     const price = document.getElementById('price').value;
     // alert(`item: ${price}`)
     const list = document.querySelector('.list-group');
     // create new link element
     const listItem = document.createElement('A');
-    listItem.innerHTML = `${item}: ${price}`;
+    listItem.innerHTML = `${item} ${price}`;
     // alert(`item: ${listItem}`);
 
     listItem.classList.add('list-group-item', 'list-group-item-action');
+    listItem.setAttribute('href', itemUrl)
+    listItem.setAttribute('target', '_blank')
 
     // append the item to list
     document.querySelector('.list-group').appendChild(listItem);
-
-    // create 
+    document.querySelector('form').reset();
+        // create 
     const nextItem = new cartItem(item, itemUrl, price, uniqueIDGenerator());
     // console.log(nextItem)
     cartMaster.push(nextItem);
-    // console.log(cartMaster)
+
     // chrome.storage.sync.set(cartMaster, function() {alert('saved!')})
   });
 
-  document.getElementById('clear').addEventListener('click', clearCart());
+  // document.getElementById('clear').addEventListener('click', clearCart());
 
 };
 
