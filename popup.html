@@ -1,2 +1,39 @@
-<input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" />
-<input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" />
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body style="width: 400px;">
+    <div class="container mx-50 my-50">
+      <!-- NEED HEADER/ETC -->
+      <h2 class="font-weight-bold">Bucket List</h2>
+      <!------- LIST OF ITEMS --------->
+      <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active"></a>
+          <a href="#" class="list-group-item list-group-item-action"></a>
+          <a href="#" class="list-group-item list-group-item-action"></a>
+          <a href="#" class="list-group-item list-group-item-action"></a>
+          <a href="#" class="list-group-item list-group-item-action disabled"></a>
+      </div>
+      <!------- ADD ITEM FORM --------->
+      <form>
+        <label for="Item">Item</label>
+        <input class="form-control form-control-sm" type="text" id="item" placeholder=".form-control-sm" />
+        <label for="Price">Price</label>
+        <input class="form-control form-control-sm" type="text" id="price" placeholder=".form-control-sm" />
+        <label for="itemUrl">URL</label>
+        <input class="form-control form-control-sm" type="text" id="itemUrl" placeholder=".form-control-sm" />
+        <button type="submit" id="submit" class="btn btn-primary mt-100">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
+
+
