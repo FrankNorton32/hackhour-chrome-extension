@@ -28,13 +28,14 @@ function removeItem (id) {
     }
   }
 }
-
+// **** commented out function defintion, was providing weird results on page load
 // clear the whole cart
-function clearCart () {
-  cartMaster = [];
-  // chrome.storage.sync.set(cartMaster, function() {alert('saved!')});
-  alert("clearCart: Cart cleared!")
-}
+// function clearCart (e) {
+//   e.preventDefault();
+//   cartMaster = [];
+//   // chrome.storage.sync.set(cartMaster, function() {alert('saved!')});
+//   alert("clearCart: Cart cleared!")
+// }
 
 // create a unique id for each list item.
 // random number between 0 and 1000
@@ -57,44 +58,54 @@ window.onload = function (event) {
   cartMaster.forEach( el => alert(el))
 
   document.getElementById('submit').addEventListener('click', (event) => {
-    alert("EVENT", event.target)
     event.preventDefault();
-    const item = document.getElementById('item').value;
-    // alert(`item: ${item}`)
-    const itemUrl = document.getElementById('itemUrl').value;
-    alert(`item: ${itemUrl}`)
-    const price = document.getElementById('price').value;
-    // alert(`item: ${price}`)
-    const list = document.querySelector('.list-group');
-    // create new link element
-    const listItem = document.createElement('A');
-    listItem.innerHTML = `${item} ${price}`;
-    // alert(`item: ${listItem}`);
 
-    listItem.classList.add('list-group-item', 'list-group-item-action');
+    // if firstLink has class "list-srt", clone it
+    // else, use first link, and add class list-strt
+    const firstLink = document.querySelector('a');
+    let listItem;
+    if (!$(firstLink).hasClass('list-start')) {
+      listItem = document.querySelector('a')
+      listItem.classList.add('list-start');
+    } else {
+      alert('triggf')
+      listItem = firstLink.cloneNode(true);
+    }
+
+    const item = document.getElementById('item').value;
+    const itemUrl = document.getElementById('itemUrl').value;
+    const price = document.getElementById('price').value;
+ 
+    listItem.innerHTML = `${item} ${price}`;
+
     listItem.setAttribute('href', itemUrl)
-    listItem.setAttribute('target', '_blank')
+   
 
     // append the item to list
     document.querySelector('.list-group').appendChild(listItem);
     document.querySelector('form').reset();
-        // create 
+
     const nextItem = new cartItem(item, itemUrl, price, uniqueIDGenerator());
     // console.log(nextItem)
     cartMaster.push(nextItem);
 
-    // chrome.storage.sync.set(cartMaster, function() {alert('saved!')})
+    chrome.storage.sync.set(cartMaster, function() {alert('saved!')})
   });
 
-  // document.getElementById('clear').addEventListener('click', clearCart());
+  document.getElementById('clear').addEventListener('click', (e) =>  { e.preventDefault();
+  cartMaster = [];
+  // chrome.storage.sync.set(cartMaster, function() {alert('saved!')});
+  alert("clearCart: Cart cleared!") });
 
+  // changes theme color when 'dark' is clicked
+  document.getElementById('darktheme').addEventListener('click', (event) => {
+    event.preventDefault();
+    $('body').toggleClass('bg-dark')
+    $('.container').toggleClass('bg-dark')
+    $('text-light').toggleClass('text-light')
+    $('h2').toggleClass('text-dark')
+    $('label').toggleClass('text-dark')
+    $('body').toggleClass('border-dark')
+  })
 };
 
-// ${item}: ${price}
-// $('.feed').on('click', '.submit-comment', function (e) {
-//   let newComm = $(e.target).prev().val();
-//   let currentPost = $(e.target).prev().prev().eq(0);
-//       // append comment to corresponding post
-//   $(currentPost).append(newComm);
-//       $(e.target).prev().val("")
-//   })

@@ -12,10 +12,19 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
     <script src="popup.js"></script>
   </head>
-  <body style="width: 400px;">
-    <div class="container bg-dark">
+  <body style="width: 400px;" class="bg-dark border rounded-bottom border-light">
+    <div class="container bg-dark" id="bgdark">
+      <!-- Toggle theme? -->
+      <div class="btn-group btn-group-toggle" id="theme" data-toggle="buttons">
+        <label class="btn btn-secondary active" id="darktheme">
+          <input type="radio" name="options" id="option1" autocomplete="off" checked> Dark
+        </label>
+        <label class="btn btn-secondary" id="lighttheme">
+          <input type="radio" name="options" id="option2" autocomplete="off"> Light
+        </label>
+      </div>
       <!-- NEED HEADER/ETC -->
-      <h2 class="font-weight-bold text-light">bucket list</h2>
+      <h2 class="font-weight-bold text-light">bucket list<i class="fa fa-shopping-basket" aria-hidden="true"></i></h2>
       <!------- LIST OF ITEMS --------->
       <div class="list-group">
         <a href="#" target="_blank" class="list-group-item list-group-item-action"></a>
