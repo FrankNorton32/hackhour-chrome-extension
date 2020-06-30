@@ -19,9 +19,11 @@ button[type="submit"] {
 
 #theme {
   display: block;
+  margin: 10px;
   float: right;
-  padding: 20px;
+  padding:5px;
   clear: both;
+  font-size: 10px;
 }
 .container {
   overflow: hidden;
@@ -34,4 +36,9 @@ margin-top: 20px;
 }
 label {
   padding-top: 5px;
+}
+.rainbow {
+  background-image: url('https://i.pinimg.com/originals/57/33/bf/5733bfbe3c71e179eeb199f40c14795b.png');
+  background-origin: content-box;
+  background-size: 100% 60%;
 }

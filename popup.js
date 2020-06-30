@@ -27,7 +27,7 @@ function removeItem(id) {
 function clearCart (e) {
   e.preventDefault();
   cartMaster = [];
-  // chrome.storage.sync.set(cartMaster, function() {alert('saved!')});
+  chrome.storage.sync.set(cartMaster, function() {alert('saved!')});
   alert("clearCart: Cart cleared!")
 }
 
@@ -44,7 +44,7 @@ function uniqueIDGenerator() {
   return output;
 }
 
-// ------------------Adding Comments---------------------------
+// ------------------Adding Comments-------------------------------------
 // eslint-disable-next-line func-names
 window.onload = function (event) {
   event.stopPropagation();
@@ -59,8 +59,8 @@ window.onload = function (event) {
   document.getElementById('submit').addEventListener('click', (event) => {
     event.preventDefault();
 
-    // if firstLink has class "list-srt", clone it
-    // else, use first link, and add class list-strt
+    // if list has anu item in it already, clone one
+    // else, use default empty link item, and add class list-strt
     const firstLink = document.querySelector('a');
     let listItem;
     if (!$(firstLink).hasClass('list-start')) {
@@ -70,16 +70,15 @@ window.onload = function (event) {
       alert('triggf');
       listItem = firstLink.cloneNode(true);
     }
-
+    // select input values
     const item = document.getElementById('item').value;
     const itemUrl = document.getElementById('itemUrl').value;
     const price = document.getElementById('price').value;
-
-    listItem.innerHTML = `${item} ${price}`;
-
+    // add item name, price, and url to new link item
+    listItem.innerHTML = `${item} $ ${price}`;
     listItem.setAttribute('href', itemUrl);
 
-    // append the item to list
+    // append the item to list, reset form feilds
     document.querySelector('.list-group').appendChild(listItem);
     document.querySelector('form').reset();
 
@@ -123,4 +122,18 @@ window.onload = function (event) {
     $('form label').toggleClass('text-dark');
     $('body').toggleClass('border-dark');
   });
+  document.getElementById('rainbow').addEventListener('click', (event) => {
+    event.preventDefault();
+    // $('body').toggleClass('bg-dark');
+    // $('#body').toggleClass('bg-dark');
+    $('.container').toggleClass('bg-dark');
+    $('text-light').toggleClass('text-light');
+    $('h2').toggleClass('text-dark');
+    $('form label').toggleClass('text-dark');
+    $('body').toggleClass('border-light');
+    $('#body').toggleClass('rainbow')
+  });
+
+
+  // ----------------- Window onload bracket ----------------------------
 };
