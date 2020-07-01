@@ -49,7 +49,7 @@ function uniqueIDGenerator() {
 window.onload = function (event) {
   event.stopPropagation();
   chrome.storage.sync.get(cartMaster, function () {
-    alert(cartMaster);
+    // alert(cartMaster);
   });
   cartMaster.forEach((el) => alert(el));
 

@@ -5,6 +5,10 @@ body {
 h2 {
   margin-top: 30px;
 }
+
+h6 {
+  font-size: x-small;
+}
 #buttons button {
   margin: 10px 0;
   height: 35;
